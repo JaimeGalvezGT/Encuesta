@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Colores de Equipos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Encuesta de Colores de Equipos</h1>
+        <form id="colorForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="equipo1">Color del Equipo A:</label>
+                <select id="equipo1" name="equipo1" onchange="updateOptions()">
+                    <option value="">Selecciona un color</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Naranja">Naranja</option>
+                    <option value="Celeste">Celeste</option>
+                    <option value="Amarillo">Amarillo</option>
+                    <option value="Fucsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="equipo2">Color del Equipo B:</label>
+                <select id="equipo2" name="equipo2" onchange="updateOptions()">
+                    <option value="">Selecciona un color</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Naranja">Naranja</option>
+                    <option value="Celeste">Celeste</option>
+                    <option value="Amarillo">Amarillo</option>
+                    <option value="Fucsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="equipo3">Color del Equipo C:</label>
+                <select id="equipo3" name="equipo3" onchange="updateOptions()">
+                    <option value="">Selecciona un color</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Naranja">Naranja</option>
+                    <option value="Celeste">Celeste</option>
+                    <option value="Amarillo">Amarillo</option>
+                    <option value="Fucsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="equipo4">Color del Equipo D:</label>
+                <select id="equipo4" name="equipo4" onchange="updateOptions()">
+                    <option value="">Selecciona un color</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Naranja">Naranja</option>
+                    <option value="Celeste">Celeste</option>
+                    <option value="Amarillo">Amarillo</option>
+                    <option value="Fucsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="equipo5">Color del Equipo E:</label>
+                <select id="equipo5" name="equipo5" onchange="updateOptions()">
+                    <option value="">Selecciona un color</option>
+                    <option value="Negro">Negro</option>
+                    <option value="Naranja">Naranja</option>
+                    <option value="Celeste">Celeste</option>
+                    <option value="Amarillo">Amarillo</option>
+                    <option value="Fucsia">Fucsia</option>
+                </select>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
