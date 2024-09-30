@@ -28,7 +28,7 @@ function submitForm(event) {
         data[key] = value;
     });
 
-    fetch('https://script.google.com/macros/s/11nzPf01-bxS41hog5kgH4q7mvq3X3-0FOn8FmfjV3uc/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzetr2VeDHbY_aHQB0e3aZyez6_dHoSUfESIMiPKsA/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
