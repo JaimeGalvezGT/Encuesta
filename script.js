@@ -1,48 +1,68 @@
-const allColors = ['Negro', 'Naranja', 'Celeste', 'Amarillo', 'Fucsia'];
+let selectedColors = {};
+const imageFiles = [
+    'person1.png',
+    'person2.png',
+    'person3.png',
+    'person4.png',
+    'person5.png'
+];
 
-function updateOptions() {
-    const selectedColors = [
-        document.getElementById('equipo1').value,
-        document.getElementById('equipo2').value,
-        document.getElementById('equipo3').value,
-        document.getElementById('equipo4').value,
-        document.getElementById('equipo5').value,
-    ].filter(color => color);
+function updateSelection(selectElement) {
+    const selectedValue = selectElement.value;
+    const selectId = selectElement.id;
 
-    const availableColors = allColors.filter(color => !selectedColors.includes(color));
+    // Limpiar colores previamente seleccionados
+    Object.keys(selectedColors).forEach(key => {
+        if (key !== selectId) {
+            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = false;
+        }
+    });
 
-    // Actualiza las opciones en los select
-    [document.getElementById('equipo1'), document.getElementById('equipo2'), document.getElementById('equipo3'), document.getElementById('equipo4'), document.getElementById('equipo5')].forEach(select => {
-        for (let i = 1; i < select.options.length; i++) {
-            const option = select.options[i];
-            option.style.display = availableColors.includes(option.value) ? 'block' : 'none';
+    // Guardar selección actual
+    selectedColors[selectId] = selectedValue;
+
+    // Deshabilitar opción seleccionada en otros selects
+    Object.keys(selectedColors).forEach(key => {
+        if (key !== selectId) {
+            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = true;
         }
     });
 }
 
-function submitForm(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
+function createImage() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 500;
+    canvas.height = 300;
+
+    const teams = Object.keys(selectedColors);
+    const colors = Object.values(selectedColors);
+
+    const squareWidth = canvas.width / teams.length;
+
+    // Dibuja las imágenes con colores de fondo
+    colors.forEach((color, index) => {
+        // Dibuja un rectángulo de color
+        ctx.fillStyle = color;
+        ctx.fillRect(index * squareWidth, 0, squareWidth, canvas.height);
+        
+        // Carga la imagen
+        const img = new Image();
+        img.src = imageFiles[index];
+        img.onload = () => {
+            ctx.drawImage(img, index * squareWidth, 0, squareWidth, canvas.height);
+        };
     });
 
-    fetch('https://script.google.com/macros/s/AKfycbxiCn5759gyOgiuCA8ZdevPnF8X-3Y2KehCPTs_zdJ2YeqtIyUKJGw_lgQFVL5XyG3u/exec', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(result => {
-        alert('Encuesta enviada con éxito!');
-        event.target.reset();
-        updateOptions(); // Reset options
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Hubo un problema al enviar la encuesta.');
-    });
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('downloadBtn').style.display = 'block';
+}
+
+function downloadImage() {
+    const canvas = document.getElementById('canvas');
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = 'imagen_colores.png';
+    link.click();
 }
