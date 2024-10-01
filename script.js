@@ -4,7 +4,8 @@ const imageFiles = [
     'person2.png',
     'person3.png',
     'person4.png',
-    'person5.png'
+    'person5.png',
+    'gameover.png' // Agregar la nueva imagen
 ];
 
 function updateSelection(selectElement) {
@@ -69,34 +70,38 @@ function createImage() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
-    canvas.width = 500;
-    canvas.height = 100;
+    // Ajustar el tamaño del lienzo
+    const canvasWidth = 600; // Ancho del lienzo
+    const canvasHeight = 400; // Altura del lienzo
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
 
-    const teams = Object.keys(selectedColors);
-    const colors = Object.values(selectedColors);
-
-    const squareWidth = canvas.width / teams.length;
+    // Definir el tamaño de los rectángulos
+    const squareWidth = canvasWidth / 3; // Ancho para 3 columnas
+    const squareHeight = canvasHeight / 2; // Altura para 2 filas
 
     // Dibuja las imágenes con colores de fondo
+    const colors = [...Object.values(selectedColors), 'gray']; // Agregar gris para la última imagen
     colors.forEach((color, index) => {
+        const x = (index % 3) * squareWidth; // Posición horizontal
+        const y = Math.floor(index / 3) * squareHeight; // Posición vertical
+
         ctx.fillStyle = color;
-        ctx.fillRect(index * squareWidth, 0, squareWidth, canvas.height);
+        ctx.fillRect(x, y, squareWidth, squareHeight);
 
         const img = new Image();
         img.src = imageFiles[index];
         img.onload = () => {
-            ctx.drawImage(img, index * squareWidth, 0, squareWidth, canvas.height);
+            if (index === 5) { // Para gameover.png
+                // Dibujar imagen más pequeña
+                ctx.drawImage(img, x + squareWidth * 0.1, y + squareHeight * 0.1, squareWidth * 0.8, squareHeight * 0.8);
+            } else {
+                // Dibujar imagen normal
+                ctx.drawImage(img, x, y, squareWidth, squareHeight);
+            }
         };
     });
 
     document.getElementById('result').style.display = 'block';
     document.getElementById('downloadBtn').style.display = 'block';
-}
-
-function downloadImage() {
-    const canvas = document.getElementById('canvas');
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL("image/png");
-    link.download = 'imagen_colores.png';
-    link.click();
 }
