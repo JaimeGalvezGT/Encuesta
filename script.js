@@ -14,17 +14,39 @@ function updateSelection(selectElement) {
     // Limpiar colores previamente seleccionados
     Object.keys(selectedColors).forEach(key => {
         if (key !== selectId) {
-            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = false;
+            const option = document.getElementById(key).querySelector(`option[value="${selectedValue}"]`);
+            if (option) option.disabled = false;
         }
     });
 
     // Guardar selección actual
-    selectedColors[selectId] = selectedValue;
+    if (selectedValue) {
+        selectedColors[selectId] = selectedValue;
+    } else {
+        delete selectedColors[selectId];
+    }
 
     // Deshabilitar opción seleccionada en otros selects
     Object.keys(selectedColors).forEach(key => {
         if (key !== selectId) {
-            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = true;
+            const option = document.getElementById(key).querySelector(`option[value="${selectedColors[key]}"]`);
+            if (option) option.disabled = true;
+        }
+    });
+
+    // Actualizar opciones
+    updateOptions();
+}
+
+function updateOptions() {
+    const allSelected = Object.values(selectedColors);
+    const allOptions = ['orange', 'black', 'skyblue', 'yellow', 'fuchsia'];
+
+    allOptions.forEach(color => {
+        const isDisabled = allSelected.includes(color);
+        for (let i = 1; i <= 5; i++) {
+            const option = document.getElementById(`team${i}`).querySelector(`option[value="${color}"]`);
+            if (option) option.disabled = isDisabled;
         }
     });
 }
@@ -34,7 +56,7 @@ function createImage() {
     const ctx = canvas.getContext('2d');
 
     canvas.width = 500;
-    canvas.height = 300;
+    canvas.height = 100;
 
     const teams = Object.keys(selectedColors);
     const colors = Object.values(selectedColors);
@@ -46,7 +68,7 @@ function createImage() {
         // Dibuja un rectángulo de color
         ctx.fillStyle = color;
         ctx.fillRect(index * squareWidth, 0, squareWidth, canvas.height);
-        
+
         // Carga la imagen
         const img = new Image();
         img.src = imageFiles[index];
@@ -62,7 +84,7 @@ function createImage() {
 function downloadImage() {
     const canvas = document.getElementById('canvas');
     const link = document.createElement('a');
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL("image/png");
     link.download = 'imagen_colores.png';
     link.click();
 }
