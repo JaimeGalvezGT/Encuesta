@@ -49,3 +49,17 @@ button {
 button:hover {
     background-color: #218838;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+select {
+    margin: 10px;
+}
+
+#canvas {
+    border: 1px solid black;
+    margin-top: 20px;
+}
