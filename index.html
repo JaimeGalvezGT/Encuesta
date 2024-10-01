@@ -8,10 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Elige los colores de los Capitanes</h1>
+        <h1>Selecciona los colores de los Capitanes</h1>
+        <h1>Selecciona los colores de los equipos</h1>
+        <p class="instructions">¡Bienvenidos! En este campamento, formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, pues esto será clave para el éxito de tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
+        <br></p>
         <form id="colorForm">
             <div class="team-selection">
-                <label for="team1">¿Cuál es el color del Equipo de Kattye y Brandon?</label>
+                <label for="team1">Elige el color del equipo que tendrán Kattye y Brandon.</label>
                 <select id="team1" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -22,7 +25,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team2">¿Cuál es el color del Equipo de Dulce y Fredy?</label>
+                <label for="team2">Elige el color del equipo que tendrán Dulce y Fredy</label>
                 <select id="team2" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -33,7 +36,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team3">¿Cuál es el color del Equipo de Meri y Pedro?</label>
+                <label for="team3">Elige el color del equipo que tendrán Meri y Pedro</label>
                 <select id="team3" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -44,7 +47,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team4">¿Cuál es el color del Equipo de Celia y Carlo?</label>
+                <label for="team4">Elige el color del equipo que tendrán Celia y Carlo</label>
                 <select id="team4" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -55,7 +58,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team5">¿Cuál es el color del Equipo de Daniela y Samuel?</label>
+                <label for="team5">Elige el color del equipo que tendrán Daniela y Samuel</label>
                 <select id="team5" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -65,7 +68,7 @@
                     <option value="fuchsia">Fucsia</option>
                 </select>
             </div>
-            <button type="button" onclick="createImage()">VALIDAR ELECCIÓN</button>
+            <button type="button" onclick="createImage()">VALIDAR SELECCIÓN</button>
         </form>
 
         <div id="result" style="display:none;">
