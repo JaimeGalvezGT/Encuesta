@@ -7,65 +7,72 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Selecciona los colores de los equipos</h1>
-    <form id="colorForm">
-        <label for="team1">Equipo 1:</label>
-        <select id="team1" onchange="updateSelection(this)">
-            <option value="">Selecciona un color</option>
-            <option value="black">Negro</option>
-            <option value="orange">Naranja</option>
-            <option value="skyblue">Celeste</option>
-            <option value="yellow">Amarillo</option>
-            <option value="fuchsia">Fucsia</option>
-        </select>
+    <div class="container">
+        <h1>Selecciona los colores de los equipos</h1>
+        <form id="colorForm">
+            <div class="team-selection">
+                <label for="team1">Equipo 1:</label>
+                <select id="team1" onchange="updateSelection(this)">
+                    <option value="">Selecciona un color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="black">Negro</option>
+                    <option value="skyblue">Celeste</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="fuchsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="team-selection">
+                <label for="team2">Equipo 2:</label>
+                <select id="team2" onchange="updateSelection(this)">
+                    <option value="">Selecciona un color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="black">Negro</option>
+                    <option value="skyblue">Celeste</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="fuchsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="team-selection">
+                <label for="team3">Equipo 3:</label>
+                <select id="team3" onchange="updateSelection(this)">
+                    <option value="">Selecciona un color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="black">Negro</option>
+                    <option value="skyblue">Celeste</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="fuchsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="team-selection">
+                <label for="team4">Equipo 4:</label>
+                <select id="team4" onchange="updateSelection(this)">
+                    <option value="">Selecciona un color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="black">Negro</option>
+                    <option value="skyblue">Celeste</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="fuchsia">Fucsia</option>
+                </select>
+            </div>
+            <div class="team-selection">
+                <label for="team5">Equipo 5:</label>
+                <select id="team5" onchange="updateSelection(this)">
+                    <option value="">Selecciona un color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="black">Negro</option>
+                    <option value="skyblue">Celeste</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="fuchsia">Fucsia</option>
+                </select>
+            </div>
+            <button type="button" onclick="createImage()">Crear Imagen</button>
+        </form>
 
-        <label for="team2">Equipo 2:</label>
-        <select id="team2" onchange="updateSelection(this)">
-            <option value="">Selecciona un color</option>
-            <option value="black">Negro</option>
-            <option value="orange">Naranja</option>
-            <option value="skyblue">Celeste</option>
-            <option value="yellow">Amarillo</option>
-            <option value="fuchsia">Fucsia</option>
-        </select>
-
-        <label for="team3">Equipo 3:</label>
-        <select id="team3" onchange="updateSelection(this)">
-            <option value="">Selecciona un color</option>
-            <option value="black">Negro</option>
-            <option value="orange">Naranja</option>
-            <option value="skyblue">Celeste</option>
-            <option value="yellow">Amarillo</option>
-            <option value="fuchsia">Fucsia</option>
-        </select>
-
-        <label for="team4">Equipo 4:</label>
-        <select id="team4" onchange="updateSelection(this)">
-            <option value="">Selecciona un color</option>
-            <option value="black">Negro</option>
-            <option value="orange">Naranja</option>
-            <option value="skyblue">Celeste</option>
-            <option value="yellow">Amarillo</option>
-            <option value="fuchsia">Fucsia</option>
-        </select>
-
-        <label for="team5">Equipo 5:</label>
-        <select id="team5" onchange="updateSelection(this)">
-            <option value="">Selecciona un color</option>
-            <option value="black">Negro</option>
-            <option value="orange">Naranja</option>
-            <option value="skyblue">Celeste</option>
-            <option value="yellow">Amarillo</option>
-            <option value="fuchsia">Fucsia</option>
-        </select>
-
-        <button type="button" onclick="createImage()">Crear Imagen</button>
-    </form>
-
-    <div id="result" style="display:none;">
-        <h2>Imagen Resultante</h2>
-        <canvas id="canvas"></canvas>
-        <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
+        <div id="result" style="display:none;">
+            <h2>Imagen Resultante</h2>
+            <canvas id="canvas"></canvas>
+            <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
