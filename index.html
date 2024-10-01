@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Selecciona los colores de los equipos</h1>
+        <h1>Elige los colores de los Capitanes</h1>
         <form id="colorForm">
             <div class="team-selection">
-                <label for="team1">Equipo 1:</label>
+                <label for="team1">¿Cuál es el color del Equipo de Kattye y Brandon?</label>
                 <select id="team1" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -22,7 +22,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team2">Equipo 2:</label>
+                <label for="team2">¿Cuál es el color del Equipo de Dulce y Fredy?</label>
                 <select id="team2" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team3">Equipo 3:</label>
+                <label for="team3">¿Cuál es el color del Equipo de Meri y Pedro?</label>
                 <select id="team3" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -44,7 +44,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team4">Equipo 4:</label>
+                <label for="team4">¿Cuál es el color del Equipo de Celia y Carlo?</label>
                 <select id="team4" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -55,7 +55,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team5">Equipo 5:</label>
+                <label for="team5">¿Cuál es el color del Equipo de Daniela y Samuel?</label>
                 <select id="team5" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -65,11 +65,11 @@
                     <option value="fuchsia">Fucsia</option>
                 </select>
             </div>
-            <button type="button" onclick="createImage()">Crear Imagen</button>
+            <button type="button" onclick="createImage()">VALIDAR ELECCIÓN</button>
         </form>
 
         <div id="result" style="display:none;">
-            <h2>Imagen Resultante</h2>
+            <h2>GAME OVER 2024</h2>
             <canvas id="canvas"></canvas>
             <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
         </div>
