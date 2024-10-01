@@ -19,6 +19,13 @@ h1 {
     color: #333;
 }
 
+.instructions {
+    text-align: justify; /* Justifica el texto */
+    font-size: 1.2em;
+    color: #555;
+    margin: 10px 0;
+}
+
 .team-selection {
     margin-bottom: 15px;
 }
