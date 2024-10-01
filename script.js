@@ -12,29 +12,41 @@ function updateSelection(selectElement) {
     const selectId = selectElement.id;
 
     // Limpiar colores previamente seleccionados
-    Object.keys(selectedColors).forEach(key => {
-        if (key !== selectId) {
-            const option = document.getElementById(key).querySelector(`option[value="${selectedValue}"]`);
-            if (option) {
-                option.disabled = false; // Habilitar opción si no se selecciona
-            }
+    if (selectedValue) {
+        // Si hay un nuevo valor seleccionado, actualizar selectedColors
+        selectedColors[selectId] = selectedValue;
+    } else {
+        // Si no hay selección, eliminar del objeto
+        delete selectedColors[selectId];
+    }
+
+    // Habilitar todas las opciones
+    const allOptions = ['black', 'orange', 'skyblue', 'yellow', 'fuchsia'];
+    const colorsInUse = Object.values(selectedColors);
+
+    // Deshabilitar las opciones ya seleccionadas
+    allOptions.forEach(color => {
+        const isDisabled = colorsInUse.includes(color);
+        const isSelectedInThisSelect = selectElement.value === color;
+
+        // Deshabilitar el color si ya está en uso y no es el seleccionado
+        const option = selectElement.querySelector(`option[value="${color}"]`);
+        if (option) {
+            option.disabled = isDisabled && !isSelectedInThisSelect;
         }
     });
 
-    // Guardar selección actual
-    if (selectedValue) {
-        selectedColors[selectId] = selectedValue;
-    } else {
-        delete selectedColors[selectId]; // Eliminar si no hay selección
-    }
-
-    // Deshabilitar opción seleccionada en otros selects
-    const colorsInUse = Object.values(selectedColors);
+    // Actualizar las otras selecciones
     Object.keys(selectedColors).forEach(key => {
-        const select = document.getElementById(key);
-        Array.from(select.options).forEach(option => {
-            option.disabled = colorsInUse.includes(option.value) && option.value !== select.value;
-        });
+        if (key !== selectId) {
+            const select = document.getElementById(key);
+            allOptions.forEach(color => {
+                const option = select.querySelector(`option[value="${color}"]`);
+                if (option) {
+                    option.disabled = colorsInUse.includes(color);
+                }
+            });
+        }
     });
 }
 
