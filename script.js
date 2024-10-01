@@ -14,18 +14,27 @@ function updateSelection(selectElement) {
     // Limpiar colores previamente seleccionados
     Object.keys(selectedColors).forEach(key => {
         if (key !== selectId) {
-            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = false;
+            const option = document.getElementById(key).querySelector(`option[value="${selectedValue}"]`);
+            if (option) {
+                option.disabled = false; // Habilitar opción si no se selecciona
+            }
         }
     });
 
     // Guardar selección actual
-    selectedColors[selectId] = selectedValue;
+    if (selectedValue) {
+        selectedColors[selectId] = selectedValue;
+    } else {
+        delete selectedColors[selectId]; // Eliminar si no hay selección
+    }
 
     // Deshabilitar opción seleccionada en otros selects
+    const colorsInUse = Object.values(selectedColors);
     Object.keys(selectedColors).forEach(key => {
-        if (key !== selectId) {
-            document.getElementById(key).querySelector(`option[value="${selectedValue}"]`).disabled = true;
-        }
+        const select = document.getElementById(key);
+        Array.from(select.options).forEach(option => {
+            option.disabled = colorsInUse.includes(option.value) && option.value !== select.value;
+        });
     });
 }
 
