@@ -118,5 +118,5 @@ function downloadImage() {
     link.click(); // Simula un clic para iniciar la descarga
 }
 
-// Añadir el evento de descarga al botón
+// Asegúrate de que el botón de descarga funcione
 document.getElementById('downloadBtn').addEventListener('click', downloadImage);
