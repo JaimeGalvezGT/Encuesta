@@ -2,9 +2,9 @@ let selectedColors = {};
 const imageFiles = [
     'equipo2.png',
     'equipo1.png',
-    'person3.png',
-    'person4.png',
-    'person5.png',
+    'equipo3.png',
+    'equipo4.png',
+    'equipo5.png',
     'gameover.png' // Agregar la nueva imagen
 ];
 
