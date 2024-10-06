@@ -118,3 +118,6 @@ function downloadImage() {
 
 // Añadir el evento de descarga al botón
 document.getElementById('downloadBtn').addEventListener('click', downloadImage);
+
+// Añadir el evento al botón de validar selección
+document.querySelector('button[type="button"]').addEventListener('click', createImage);
