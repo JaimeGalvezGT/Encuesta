@@ -5,7 +5,7 @@ const imageFiles = [
     'person3.png',
     'person4.png',
     'person5.png',
-    'gameover.png' // Agregar la nueva imagen
+    'gameover.png' // Asegúrate de que esta imagen exista
 ];
 
 function updateSelection(selectElement) {
@@ -71,20 +71,22 @@ function createImage() {
     const ctx = canvas.getContext('2d');
 
     // Ajustar el tamaño del lienzo
-    const canvasWidth = 600; // Ancho del lienzo
-    const canvasHeight = 400; // Altura del lienzo
+    const canvasWidth = 600;
+    const canvasHeight = 400;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 
     // Definir el tamaño de los rectángulos
-    const squareWidth = canvasWidth / 3; // Ancho para 3 columnas
-    const squareHeight = canvasHeight / 2; // Altura para 2 filas
+    const squareWidth = canvasWidth / 3;
+    const squareHeight = canvasHeight / 2;
 
     // Dibuja las imágenes con colores de fondo
-    const colors = [...Object.values(selectedColors), 'gray']; // Agregar gris para la última imagen
+    const colors = [...Object.values(selectedColors), 'gray'];
+    let loadedImages = 0; // Contador para asegurar que todas las imágenes se carguen
+
     colors.forEach((color, index) => {
-        const x = (index % 3) * squareWidth; // Posición horizontal
-        const y = Math.floor(index / 3) * squareHeight; // Posición vertical
+        const x = (index % 3) * squareWidth;
+        const y = Math.floor(index / 3) * squareHeight;
 
         ctx.fillStyle = color;
         ctx.fillRect(x, y, squareWidth, squareHeight);
@@ -92,15 +94,15 @@ function createImage() {
         const img = new Image();
         img.src = imageFiles[index];
         img.onload = () => {
-            if (index === 5) { // Para gameover.png
-                ctx.drawImage(img, x + squareWidth * 0.1, y + squareHeight * 0.1, squareWidth * 0.8, squareHeight * 0.8);
-            } else {
-                ctx.drawImage(img, x, y, squareWidth, squareHeight);
+            ctx.drawImage(img, x, y, squareWidth, squareHeight);
+            loadedImages++;
+
+            // Mostrar el botón de descarga solo después de que todas las imágenes se hayan cargado
+            if (loadedImages === colors.length) {
+                showDownloadButton();
             }
         };
     });
-
-    showDownloadButton(); // Mostrar el botón de descarga
 }
 
 function showDownloadButton() {
@@ -118,6 +120,3 @@ function downloadImage() {
 
 // Añadir el evento de descarga al botón
 document.getElementById('downloadBtn').addEventListener('click', downloadImage);
-
-// Añadir el evento al botón de validar selección
-document.querySelector('button[type="button"]').addEventListener('click', createImage);
