@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Selecciona los colores de los Capitanes</h1>
         <p class="instructions">¡Bienvenidos! En este campamento formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, esto puede ayudar a tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
-        <br></p>
+        <br>
         <form id="colorForm">
             <div class="team-selection">
                 <label for="team1">Elige el color del equipo que tendrán Kattye y Brandon.</label>
@@ -73,9 +73,70 @@
         <div id="result" style="display:none;">
             <h2>GAME OVER 2024</h2>
             <canvas id="canvas"></canvas>
-            <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
+            <button id="downloadBtn" style="display:none;">Descargar Imagen</button>
         </div>
     </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Función para mostrar el botón de descarga después de crear la imagen
+        function showDownloadButton() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.style.display = 'block'; // Mostrar el botón
+            downloadBtn.onclick = downloadImage; // Asignar la función de descarga
+        }
+
+        // Función para descargar la imagen
+        function downloadImage() {
+            const canvas = document.getElementById('canvas');
+            const link = document.createElement('a');
+            link.download = 'mi_imagen.png'; // Nombre del archivo a descargar
+            link.href = canvas.toDataURL('image/png'); // Convierte el canvas a una imagen PNG
+            link.click(); // Simula un clic para iniciar la descarga
+        }
+
+        // Modificar la función createImage para mostrar el botón de descarga
+        function createImage() {
+            if (!validateSelections()) return; // Validar antes de crear la imagen
+
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Ajustar el tamaño del lienzo
+            const canvasWidth = 600; // Ancho del lienzo
+            const canvasHeight = 400; // Altura del lienzo
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            // Definir el tamaño de los rectángulos
+            const squareWidth = canvasWidth / 3; // Ancho para 3 columnas
+            const squareHeight = canvasHeight / 2; // Altura para 2 filas
+
+            // Dibuja las imágenes con colores de fondo
+            const colors = [...Object.values(selectedColors), 'gray']; // Agregar gris para la última imagen
+            colors.forEach((color, index) => {
+                const x = (index % 3) * squareWidth; // Posición horizontal
+                const y = Math.floor(index / 3) * squareHeight; // Posición vertical
+
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, squareWidth, squareHeight);
+
+                const img = new Image();
+                img.src = imageFiles[index];
+                img.onload = () => {
+                    if (index === 5) { // Para gameover.png
+                        ctx.drawImage(img, x + squareWidth * 0.1, y + squareHeight * 0.1, squareWidth * 0.8, squareHeight * 0.8);
+                    } else {
+                        ctx.drawImage(img, x, y, squareWidth, squareHeight);
+                    }
+                };
+            });
+
+            showDownloadButton(); // Mostrar el botón de descarga
+        }
+    </script>
+</body>
+</html>
 
     <script src="script.js"></script>
 </body>
