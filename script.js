@@ -1,7 +1,7 @@
 let selectedColors = {};
 const imageFiles = [
-    'person1.png',
     'equipo2.png',
+    'equipo1.png',
     'person3.png',
     'person4.png',
     'person5.png',
