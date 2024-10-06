@@ -1,4 +1,5 @@
 let selectedColors = {};
+let userName = '';
 const imageFiles = [
     'equipo2.png',
     'equipo1.png',
@@ -7,6 +8,18 @@ const imageFiles = [
     'equipo5.png',
     'gameover.png' // Agregar la nueva imagen
 ];
+
+function startSurvey() {
+    const nameInput = document.getElementById('userName');
+    userName = nameInput.value.trim();
+
+    if (userName) {
+        document.getElementById('teamSelections').style.display = 'block';
+        document.querySelector('.name-entry').style.display = 'none'; // Ocultar la entrada del nombre
+    } else {
+        alert('Por favor, ingresa tu nombre.');
+    }
+}
 
 function updateSelection(selectElement) {
     const selectedValue = selectElement.value;
@@ -72,13 +85,13 @@ function createImage() {
 
     // Ajustar el tamaño del lienzo
     const canvasWidth = 600; // Ancho del lienzo
-    const canvasHeight = 400; // Altura del lienzo
+    const canvasHeight = 440; // Altura del lienzo (aumentamos la altura para el cintillo)
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 
     // Definir el tamaño de los rectángulos
     const squareWidth = canvasWidth / 3; // Ancho para 3 columnas
-    const squareHeight = canvasHeight / 2; // Altura para 2 filas
+    const squareHeight = (canvasHeight - 40) / 2; // Altura para 2 filas (ajustamos para el cintillo)
 
     // Dibuja las imágenes con colores de fondo
     const colors = [...Object.values(selectedColors), 'gray']; // Agregar gris para la última imagen
@@ -99,6 +112,19 @@ function createImage() {
                 // Dibujar imagen normal
                 ctx.drawImage(img, x, y, squareWidth, squareHeight);
             }
+
+            // Después de cargar la última imagen, dibujar el nombre
+            if (index === colors.length - 1) {
+                // Cintillo negro
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, canvasHeight - 40, canvasWidth, 40);
+                
+                // Escribir el nombre
+                ctx.fillStyle = 'white'; // Color del texto
+                ctx.font = '20px Arial'; // Fuente
+                ctx.textAlign = 'center'; // Alinear el texto al centro
+                ctx.fillText(userName, canvasWidth / 2, canvasHeight - 15); // Escribir el nombre
+            }
         };
     });
 
@@ -109,7 +135,7 @@ function createImage() {
 function downloadImage() {
     const canvas = document.getElementById('canvas');
     const link = document.createElement('a');
-    link.download = 'imagen_equipo.png'; // Nombre del archivo a descargar
-    link.href = canvas.toDataURL(); // Convierte el canvas a URL de imagen
-    link.click(); // Simula un clic en el enlace para descargar
+    link.download = 'imagen_encuesta.png';
+    link.href = canvas.toDataURL();
+    link.click();
 }
