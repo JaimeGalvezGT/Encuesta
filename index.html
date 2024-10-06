@@ -9,10 +9,9 @@
 <body>
     <div class="container">
         <h1>Selecciona los colores de los equipos</h1>
-        <p class="instructions">¡Bienvenidos! En este campamento, formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, pues esto será clave para el éxito de tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
-        <form id="colorForm">
+              <p class="instructions">¡Bienvenidos! En este campamento formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, esto puede ayudar a tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
             <div class="team-selection">
-                <label for="team1">Equipo 1:</label>
+                <label for="team1">Elige el color del equipo que tendrán Dulce y Fredy:</label>
                 <select id="team1" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -23,7 +22,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team2">Equipo 2:</label>
+                <label for="team2">Elige el color del equipo que tendrán Celia y Carlo:</label>
                 <select id="team2" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -34,7 +33,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team3">Equipo 3:</label>
+                <label for="team3">Elige el color del equipo que tendrán Kattye y Brandon:</label>
                 <select id="team3" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -45,7 +44,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team4">Equipo 4:</label>
+                <label for="team4">Elige el color del equipo que tendrán Merari y Pedro:/label>
                 <select id="team4" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -56,7 +55,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team5">Equipo 5:</label>
+                <label for="team5">Elige el color del equipo que tendrán Daniela y Samuel:</label>
                 <select id="team5" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -70,7 +69,7 @@
         </form>
 
         <div id="result" style="display:none;">
-            <h2>Imagen Resultante</h2>
+            <h2>GAME OVER 2024</h2>
             <canvas id="canvas"></canvas>
             <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
         </div>
