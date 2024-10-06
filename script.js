@@ -5,7 +5,7 @@ const imageFiles = [
     'person3.png',
     'person4.png',
     'person5.png',
-    'gameover.png' // Asegúrate de que esta imagen exista
+    'gameover.png' // Agregar la nueva imagen
 ];
 
 function updateSelection(selectElement) {
@@ -71,22 +71,20 @@ function createImage() {
     const ctx = canvas.getContext('2d');
 
     // Ajustar el tamaño del lienzo
-    const canvasWidth = 600;
-    const canvasHeight = 400;
+    const canvasWidth = 600; // Ancho del lienzo
+    const canvasHeight = 400; // Altura del lienzo
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 
     // Definir el tamaño de los rectángulos
-    const squareWidth = canvasWidth / 3;
-    const squareHeight = canvasHeight / 2;
+    const squareWidth = canvasWidth / 3; // Ancho para 3 columnas
+    const squareHeight = canvasHeight / 2; // Altura para 2 filas
 
     // Dibuja las imágenes con colores de fondo
-    const colors = [...Object.values(selectedColors), 'gray'];
-    let loadedImages = 0; // Contador para asegurar que todas las imágenes se carguen
-
+    const colors = [...Object.values(selectedColors), 'gray']; // Agregar gris para la última imagen
     colors.forEach((color, index) => {
-        const x = (index % 3) * squareWidth;
-        const y = Math.floor(index / 3) * squareHeight;
+        const x = (index % 3) * squareWidth; // Posición horizontal
+        const y = Math.floor(index / 3) * squareHeight; // Posición vertical
 
         ctx.fillStyle = color;
         ctx.fillRect(x, y, squareWidth, squareHeight);
@@ -94,29 +92,16 @@ function createImage() {
         const img = new Image();
         img.src = imageFiles[index];
         img.onload = () => {
-            ctx.drawImage(img, x, y, squareWidth, squareHeight);
-            loadedImages++;
-
-            // Mostrar el botón de descarga solo después de que todas las imágenes se hayan cargado
-            if (loadedImages === colors.length) {
-                showDownloadButton();
+            if (index === 5) { // Para gameover.png
+                // Dibujar imagen más pequeña
+                ctx.drawImage(img, x + squareWidth * 0.1, y + squareHeight * 0.1, squareWidth * 0.8, squareHeight * 0.8);
+            } else {
+                // Dibujar imagen normal
+                ctx.drawImage(img, x, y, squareWidth, squareHeight);
             }
         };
     });
-}
 
-function showDownloadButton() {
-    const downloadBtn = document.getElementById('downloadBtn');
-    downloadBtn.style.display = 'block'; // Mostrar el botón
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('downloadBtn').style.display = 'block';
 }
-
-function downloadImage() {
-    const canvas = document.getElementById('canvas');
-    const link = document.createElement('a');
-    link.download = 'mi_imagen.png'; // Nombre del archivo a descargar
-    link.href = canvas.toDataURL('image/png'); // Convierte el canvas a una imagen PNG
-    link.click(); // Simula un clic para iniciar la descarga
-}
-
-// Asegúrate de que el botón de descarga funcione
-document.getElementById('downloadBtn').addEventListener('click', downloadImage);
