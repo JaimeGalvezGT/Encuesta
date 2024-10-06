@@ -93,15 +93,28 @@ function createImage() {
         img.src = imageFiles[index];
         img.onload = () => {
             if (index === 5) { // Para gameover.png
-                // Dibujar imagen más pequeña
                 ctx.drawImage(img, x + squareWidth * 0.1, y + squareHeight * 0.1, squareWidth * 0.8, squareHeight * 0.8);
             } else {
-                // Dibujar imagen normal
                 ctx.drawImage(img, x, y, squareWidth, squareHeight);
             }
         };
     });
 
-    document.getElementById('result').style.display = 'block';
-    document.getElementById('downloadBtn').style.display = 'block';
+    showDownloadButton(); // Mostrar el botón de descarga
 }
+
+function showDownloadButton() {
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.style.display = 'block'; // Mostrar el botón
+}
+
+function downloadImage() {
+    const canvas = document.getElementById('canvas');
+    const link = document.createElement('a');
+    link.download = 'mi_imagen.png'; // Nombre del archivo a descargar
+    link.href = canvas.toDataURL('image/png'); // Convierte el canvas a una imagen PNG
+    link.click(); // Simula un clic para iniciar la descarga
+}
+
+// Añadir el evento de descarga al botón
+document.getElementById('downloadBtn').addEventListener('click', downloadImage);
