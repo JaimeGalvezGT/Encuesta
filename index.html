@@ -5,11 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCPT GAME OVER</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .name-entry input {
+            width: 60%; /* Ajusta el ancho del cuadro de texto */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 2px; /* Espacio superior reducido aún más */
+            text-align: center; /* Centrar texto en el cuadro */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Adivina los colores de los Capitanes</h1>
-              <p class="instructions">¡Bienvenidos! En este campamento formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, esto puede ayudar a tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
+        <p class="instructions">¡Bienvenidos! En este campamento formaremos 5 equipos, cada uno compuesto por 2 Líderes. Tu misión es adivinar el color asignado a cada equipo. Asegúrate de pensar estratégicamente y asignar los colores de manera correcta, esto puede ayudar a tu equipo durante el Campamento GAME OVER. Completa el formulario con tus elecciones y prepárate para disfrutar de nuestro campamento en este año. ¡Buena suerte!</p>
+        
+        <div class="name-entry" style="text-align: center;">
+            <p style="font-size: 24px; font-weight: bold;">ESCRIBE TU NOMBRE:</p>
+            <input type="text" id="userName" required>
+            <p></p> <!-- Salto de línea 1 -->
+            <p></p> <!-- Salto de línea 2 -->
+            <p></p> <!-- Salto de línea 3 -->
+            <button type="button" onclick="startSurvey()">Continuar</button>
+        </div>
+
+        <div id="teamSelections" style="display:none;">
             <div class="team-selection">
                 <label for="team1">Elige el color del equipo que tendrán Dulce y Fredy:</label>
                 <select id="team1" onchange="updateSelection(this)">
@@ -44,7 +65,7 @@
                 </select>
             </div>
             <div class="team-selection">
-                <label for="team4">Elige el color del equipo que tendrán Merari y Pedro:/label>
+                <label for="team4">Elige el color del equipo que tendrán Merari y Pedro:</label>
                 <select id="team4" onchange="updateSelection(this)">
                     <option value="">Selecciona un color</option>
                     <option value="orange">Naranja</option>
@@ -66,10 +87,10 @@
                 </select>
             </div>
             <button type="button" onclick="createImage()">Crear Imagen</button>
-        </form>
-
+        </div>
+        
         <div id="result" style="display:none;">
-            <h2>GAME OVER 2024</h2>
+            <h2>Imagen Resultante</h2>
             <canvas id="canvas"></canvas>
             <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Descargar Imagen</button>
         </div>
