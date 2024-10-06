@@ -105,3 +105,11 @@ function createImage() {
     document.getElementById('result').style.display = 'block';
     document.getElementById('downloadBtn').style.display = 'block';
 }
+
+function downloadImage() {
+    const canvas = document.getElementById('canvas');
+    const link = document.createElement('a');
+    link.download = 'imagen_equipo.png'; // Nombre del archivo a descargar
+    link.href = canvas.toDataURL(); // Convierte el canvas a URL de imagen
+    link.click(); // Simula un clic en el enlace para descargar
+}
